@@ -1,8 +1,6 @@
 # watson-speech-test
 
-ブラウザでテストします。
-
-watson-speechは以下から最新版の `watson-speech.min.js` をダウンロードします。
-https://github.com/watson-developer-cloud/speech-javascript-sdk/releases
-
-
+## How to use
+1. Download this repository. (ZIP)
+2. `npm install`
+3. Go to this page in your browser. (http://localhost:3000)
