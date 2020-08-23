@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <script src="/watson-speech.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<h1>Speech JS SDK TEST</h1>
+<h3>1. Run curl.</h3>
+<p>
+  curl -k -X POST --header "Content-Type: application/x-www-form-urlencoded" --header "Accept: application/json"
+  --data-urlencode "grant_type=urn:ibm:params:oauth:grant-type:apikey" --data-urlencode
+  "apikey=mO5u87ge__Ot_KPDoq6n2hYlDGD9rByP0U3AScFTlX00" "https://iam.cloud.ibm.com/identity/token"
+</p>
+<h3>2. Paste access_token.</h3>
+<textarea id="token" cols="100" rows="4"></textarea>
+<h3>3. Select voice.</h3>
+<select id="voice" name="language">
+  <option value="en-US_AllisonV3Voice">en-US_AllisonV3Voice</option>
+  <option value="ja-JP_EmiV3Voice">ja-JP_EmiV3Voice</option>
+  <option value="ko-KR_YunaVoice">ko-KR_YunaVoice</option>
+</select>
+<h3>4. Input message.</h3>
+<p>Ex. Hello (English) / こんにちは (Japanese) / 안녕하세요 (Korean)</p>
+<textarea id="message" cols="100" rows="4"></textarea>
+<h3>5. Click button.</h3>
+<button id="speech">Speech</button>
+</body>
+</html>
+
+<script>
+  let AUDIO;
+  document.getElementById('speech').onclick = () => {
+    AUDIO = null;
+    const params = {
+      accessToken: document.getElementById('token').value,
+      text: document.getElementById('message').value,
+      voice: document.getElementById('voice').value,
+      autoPlay: false
+    };
+    console.log('params:', params);
+    AUDIO = WatsonSpeech.TextToSpeech.synthesize(params);
+    AUDIO.play();
+  };
+</script>
